@@ -1,0 +1,12 @@
+There is always a place you stand, even if you don’t see it.
+
+Every command begins from somewhere
+and that “somewhere” quietly shapes what happens next.
+
+There is a simple way to reveal it: pwd.
+
+If something feels off…
+
+maybe you should first ask:
+where am I?
+

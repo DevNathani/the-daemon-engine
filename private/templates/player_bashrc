@@ -69,7 +69,7 @@ reload(){
 }
 
 # ---------------- PROMPT ----------------
-PS1='\[\e[36m\]ShellFord \[\e[97m\][\u] \[\e[32m\][$(__get_level)] \[\e[33m\]\w \[\e[90m\]-> \[\e[0m\]'
+PS1='\[\e[36m\]theDaemon \[\e[97m\][\u] \[\e[32m\][$(__get_level)] \[\e[33m\]\w \[\e[90m\]-> \[\e[0m\]'
 
 
 # ---------------- LOGOS ----------------
@@ -143,9 +143,9 @@ sleep 0.2
 printf "%b\n" "${BOLD}${C_WHITE}          Welcome to The Daemon${RESET}"
 echo
 
-printf "%b\n" "${C_CYAN}  Player${RESET} : ${USER}"
-printf "%b\n" "${C_CYAN}  Event${RESET}  : ${C_MAGENTA}The Daemon${RESET}"
-printf "%b\n" "${C_CYAN}  Host${RESET}   : ${C_YELLOW}APPLICATION CLUB${RESET}"
+printf "%b\n" "${C_CYAN}  Player${RESET}      : ${USER}"
+printf "%b\n" "${C_CYAN}  Event${RESET}       : ${C_MAGENTA}The Daemon${RESET}"
+printf "%b\n" "${C_CYAN}  DEVELOPER${RESET}   : ${C_YELLOW}DEV NATHANI${RESET}"
 echo
 
 printf "%b\n" "${C_CYAN}  Objective${RESET} : Locate the hidden key in each level and execute:"
@@ -173,7 +173,7 @@ echo
 printf "%b" "${C_YELLOW}  Press any key to continue...${RESET}"
 read -n 1 -s
 
-# ---------------- CLEAR + PROLOGUE ----------------
+  # ---------------- CLEAR + PROLOGUE ----------------
 clear
 
 printf "%b\n" "${C_MAGENTA}${BOLD}  Prologue:${RESET}"
@@ -181,35 +181,7 @@ echo
 
 sleep 0.5
 
-echo "${C_WHITE} The small fire barely pushed back the heavy darkness of the castle courtyard...${RESET}"
-
-echo "${C_WHITE} I sat on the cold stone, staring into the flames ${RESET}"
-echo "${C_WHITE} not for warmth... but as a reminder.${RESET}"
-
-echo
-echo "${C_WHITE} Every step of my journey... every wound... every sacrifice...${RESET}"
-echo "${C_WHITE} had led me here.${RESET}"
-
-echo
-
-echo "${C_WHITE} There was no room left for doubt.${RESET}"
-echo "${C_WHITE} No space for fear.${RESET}"
-echo "${C_WHITE} I had come too far to feel anything but resolve...${RESET}"
-
-echo
-
-echo "${C_WHITE} Finally...${RESET}"
-echo "${C_WHITE} I whispered into the empty night...${RESET}"
-
-echo
-
-echo "${C_RED} I am inside the castle.${RESET}" 
-sleep 0.05
-echo "${C_YELLOW} Now I have only one motive.${RESET}" 
-sleep 0.05
-echo "${C_RED} I must kill the King.${RESET}" 
-sleep 0.05
-
+echo "${C_WHITE} CUSTOM PROLOGUE FOR STORY ${RESET}"
 
 echo
 echo
@@ -217,6 +189,7 @@ echo "----------------------------------------------------"
 echo
 printf "%b" "${C_YELLOW} Press any key to continue...${RESET}"
 read -n 1 -s
+
 # ---------------- LOAD LEVEL ----------------
 
 /opt/game/bin/player/load_level "$USER"
@@ -226,4 +199,10 @@ if [ -z "$TMOUT" ]; then
     TMOUT=900
     readonly TMOUT
     export TMOUT
+fi
+
+if [ -z "$LEVEL_1_KEY" ]; then
+    LEVEL_1_KEY=lYtaPMp6D1WZjlvP
+    readonly LEVEL_1_KEY
+    export LEVEL_1_KEY
 fi

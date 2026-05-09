@@ -59,9 +59,9 @@ echo "      The Daemon ADMIN PANEL"
 echo "======================================"
 echo -e "${RESET}"
 
-echo -e "${C_WHITE}User     :${RESET} $(whoami)"
-echo -e "${C_WHITE}Host     :${RESET} Shellford"
-echo -e "${C_WHITE}Time     :${RESET} $(date)"
+echo -e "${C_WHITE}User          :${RESET} $(whoami)"
+echo -e "${C_WHITE}Developer     :${RESET} Dev Nathani"
+echo -e "${C_WHITE}Time          :${RESET} $(date)"
 echo
 
 echo -e "${C_YELLOW}Available Commands:${RESET}"

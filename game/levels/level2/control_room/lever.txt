@@ -1,0 +1,6 @@
+Levers and switches cover the walls.
+A control panel sits in the center.
+This is where the mechanism is operated.
+
+panel waits here for activation.
+

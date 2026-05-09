@@ -1,0 +1,11 @@
+OPERATOR INSTRUCTIONS
+
+The panel must be operated from a distance.
+Standing too close confuses the mechanism.
+
+If you run panel from within control_room,
+the mechanism fails. You are too close.
+
+Run it from a different place instead.
+Somewhere where you can see whole mechanism 
+

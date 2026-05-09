@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Unauthorized access\n");
     return 1;
 }
-    const char *event = "Demo theDaemon";
+    const char *event = "theDaemon";
 
     setvbuf(stdout, NULL, _IONBF, 0);
 
@@ -134,11 +134,11 @@ int main(int argc, char *argv[]) {
 
     printf(WHITE "This required curiosity, patience, and real Linux skills." RESET "\n\n");
 
-    printf(CYAN "Player  : " RESET "%s\n", user);
-    printf(CYAN "Score   : " RESET BOLD "%d" RESET "\n", score);
-    printf(CYAN "Event   : " RESET PURPLE "%s" RESET "\n", event);
-    printf(CYAN "Host    : " RESET YELLOW "DEV NATHANI" RESET "\n");
-    printf(CYAN "Time    : " RESET "%s\n\n", date);
+    printf(CYAN "Player       : " RESET "%s\n", user);
+    printf(CYAN "Score        : " RESET BOLD "%d" RESET "\n", score);
+    printf(CYAN "Event        : " RESET PURPLE "%s" RESET "\n", event);
+    printf(CYAN "DEVELOPER    : " RESET YELLOW "DEV NATHANI" RESET "\n");
+    printf(CYAN "Time         : " RESET "%s\n\n", date);
 
     printf(WHITE "🏁 Your journey ends here. The system is now locked." RESET "\n\n");
     printf(GRAY "You may logout safely." RESET "\n\n");
