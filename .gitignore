@@ -1,0 +1,20 @@
+# DOCKER
+*.pid
+
+# SECRET FILES
+var/game/
+var/game/*
+var
+
+#OS junk
+.DB_STORE
+THUMBS.db
+
+*.o
+.vscode/
+
+**/hash
+
+known_hosts
+
+backups
