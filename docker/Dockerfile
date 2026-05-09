@@ -110,7 +110,7 @@ RUN ln -s /opt/game/bin/player/instructions /usr/local/bin/instructions
 
 # Player Login Behaviour
 RUN mkdir -p /etc/game/
-COPY private/templates/bashrc /etc/game/.bashrc
+COPY private/templates/player_bashrc /etc/game/.bashrc
 RUN chown root:root /etc/game/.bashrc  && \
     chmod 444 /etc/game/.bashrc 
 
@@ -146,19 +146,6 @@ RUN chown admin:admin /home/admin/.bash_profile && chmod 644 /home/admin/.bash_p
 # Admin bashrc
 COPY private/templates/admin_bashrc /home/admin/.bashrc
 RUN chown admin:admin /home/admin/.bashrc && chmod 644 /home/admin/.bashrc
-
-# Player Login Behaviour
-RUN mkdir -p /etc/game/
-COPY private/templates/bashrc /etc/game/.bashrc
-RUN chown root:root /etc/game/.bashrc  && \
-    chmod 444 /etc/game/.bashrc 
-
-RUN echo '' >> /etc/bashrc && \
-    echo '# Player Shell' >> /etc/bashrc && \
-    echo 'if [[ $- == *i* ]] && id -nG "$USER" 2>/dev/null | grep -qw game; then' >> /etc/bashrc && \
-    echo '  [ -f /etc/game/.bashrc ] && source /etc/game/.bashrc' >> /etc/bashrc && \
-    echo 'fi' >> /etc/bashrc
-
 
 # INIT state script
 COPY docker/init_state.sh /usr/local/bin/init_state.sh
