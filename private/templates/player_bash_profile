@@ -1,0 +1,21 @@
+# ================= LOGIN POLICY =================
+
+# Abuse hardening
+ulimit -u 25
+ulimit -f 20480
+ulimit -v 524288
+ulimit -c 0
+
+# Locale & terminal
+export LANG=C
+export LC_ALL=C
+export LC_CTYPE=C
+export TERM=xterm-256color
+
+# Auto logout after 15 minutes idle
+TMOUT=900
+readonly TMOUT
+export TMOUT
+
+USER=$(whoami)
+/opt/game/bin/load_level "$USER"

@@ -1,0 +1,86 @@
+
+# -------- ENV --------
+export LANG=C
+export LC_ALL=C
+export TERM=xterm-256color
+
+# -------- COLORS --------
+C_RED=$'\e[31m'
+C_GREEN=$'\e[32m'
+C_BLUE=$'\e[34m'
+C_YELLOW=$'\e[33m'
+C_GRAY=$'\e[90m'
+C_WHITE=$'\e[97m'
+BOLD=$'\e[1m'
+RESET=$'\e[0m'
+
+# -------- PROMPT --------
+PS1="\[${BOLD}${C_RED}\][ADMIN @ \h]\[${RESET}\] "\
+"\[${C_BLUE}\]\w "\
+"\[${C_GREEN}\]# \[${RESET}\]"
+
+# -------- SAFE DEFAULTS --------
+umask 022
+set -o noclobber   
+
+# -------- ALIASES --------
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# -------- GAME CONTROLS ALIASES--------
+alias sshmon="sudo /opt/game/bin/admin/sshmonitor"
+alias leaderboard="sudo /opt/game/bin/admin/leaderboard"
+alias createp="sudo /opt/game/bin/admin/create_player"
+alias addp="sudo /opt/game/bin/admin/addplayer"
+alias delp="sudo /opt/game/bin/admin/deleteplayer"
+alias resp="sudo /opt/game/bin/admin/resetplayer"
+alias lvlmon="sudo /opt/game/bin/admin/levelmonitor"
+alias killp="sudo /opt/game/bin/admin/killplayer.sh"
+alias logs="sudo /opt/game/bin/admin/playermonitor"
+alias guardCPU="sudo /opt/game/bin/admin/cpu_guard.sh"
+alias sshmon2="sudo /opt/game/bin/admin/sshmonitor2"
+alias powers="source .bashrc"
+
+# -------- QUICK DEBUG --------
+alias players="sudo ls /home"
+
+# -------- SYSTEM MONITOR --------
+alias mem="free -h"
+alias cpu="top -o %CPU"
+alias proc="ps aux --sort=-%cpu | head"
+
+
+clear
+
+echo -e "${BOLD}${C_GREEN}"
+echo "======================================"
+echo "      The Daemon ADMIN PANEL"
+echo "======================================"
+echo -e "${RESET}"
+
+echo -e "${C_WHITE}User     :${RESET} $(whoami)"
+echo -e "${C_WHITE}Host     :${RESET} Shellford"
+echo -e "${C_WHITE}Time     :${RESET} $(date)"
+echo
+
+echo -e "${C_YELLOW}Available Commands:${RESET}"
+echo -e "  ${C_GREEN}sshmon${RESET}       → Monitor SSH sessions"
+echo -e "  ${C_GREEN}lvlmon${RESET}       → Monitor player levels"
+echo -e "  ${C_GREEN}leaderboard${RESET}  → View rankings"
+echo -e "  ${C_GREEN}addp${RESET}         → Add players from CSV"
+echo -e "  ${C_GREEN}delp${RESET}         → Delete player"
+echo -e "  ${C_GREEN}resp${RESET}         → Reset player"
+echo -e "  ${C_GREEN}lvlmon${RESET}       → Display Players Progress"
+echo -e "  ${C_GREEN}logs${RESET}         → Display Player Logs"
+echo -e "  ${C_GREEN}killp${RESET}        → Kill Player Session"
+echo -e "  ${C_GREEN}guardCPU${RESET}     → Guard CPU Utilization"
+echo -e "  ${C_GREEN}players${RESET}      → See Players"
+echo -e "  ${C_GREEN}mem${RESET}          → Free Memory"
+echo -e "  ${C_GREEN}cpu${RESET}          → Display CPU Utilization"
+echo -e "  ${C_GREEN}proc${RESET}         → Display Processes"
+echo -e "  ${C_BLUE}powers${RESET}        → See Commands"
+echo
+
+echo -e "${C_GRAY}System ready.${RESET}"
+echo

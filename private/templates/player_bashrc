@@ -1,0 +1,229 @@
+clear
+
+# ---------------- HARDENING ----------------
+ulimit -u 25
+ulimit -f 20480
+ulimit -v 524288
+ulimit -s 8192
+ulimit -c 0
+ulimit -n 1024
+
+unset -f exec
+
+USER=$(whoami)
+
+# ---------------- ENV ----------------
+export LANG=C
+export LC_ALL=C
+export LC_CTYPE=C
+export TERM=xterm-256color
+
+# ---------------- COLORS ----------------
+C_CYAN=$'\e[36m'
+C_MAGENTA=$'\e[35m'
+C_GRAY=$'\e[90m'
+C_WHITE=$'\e[97m'
+C_GREEN=$'\e[32m'
+C_YELLOW=$'\e[33m'
+C_RED=$'\e[91m'
+BOLD=$'\e[1m'
+RESET=$'\e[0m'
+
+# ------------- Flush stdin  ------------
+wait_key() {
+    # flush buffer
+    while read -t 0; do read -r; done
+
+    # wait for key
+    read -n 1 -s -r -p "Press any key to continue..."
+    echo
+}
+
+# ---------------- Extract Current Level Name and Number for Logged in User ----------------
+__get_level(){
+    local lvl
+    lvl=$(/opt/game/bin/utils/get_level 2>/dev/null)
+
+    [ -z "$lvl" ] && lvl="?"
+
+    local name
+    name=$(/opt/game/bin/utils/get_level_name "$lvl" 2>/dev/null)
+
+    if [ -z "$name" ]; then
+        echo "The Void"
+    else
+        echo "R${lvl}:${name}"
+    fi
+}
+
+# move player back to home directory 
+unlock(){
+    /usr/local/bin/unlock "$@"
+    cd ~
+}
+
+# move player back to home directory
+reload(){
+    /usr/local/bin/reload "$@"
+    cd ~
+}
+
+# ---------------- PROMPT ----------------
+PS1='\[\e[36m\]ShellFord \[\e[97m\][\u] \[\e[32m\][$(__get_level)] \[\e[33m\]\w \[\e[90m\]-> \[\e[0m\]'
+
+
+# ---------------- LOGOS ----------------
+# load logos
+mapfile -t CLUB_LOGO < /opt/game/assets/logo.txt
+mapfile -t GAME_LOGO < /opt/game/assets/event.txt
+
+LEFT_WIDTH=40
+RIGHT_WIDTH=40
+
+CLUB_LINES=${#CLUB_LOGO[@]}
+GAME_LINES=${#GAME_LOGO[@]}
+MAX_LOGO_LINES=$CLUB_LINES
+[ "$GAME_LINES" -gt "$MAX_LOGO_LINES" ] && MAX_LOGO_LINES=$GAME_LINES
+
+clear
+
+# BOOT SEQUENCE
+printf "%b\n" "${C_GREEN}[daemon] booting interface...${RESET}"
+sleep 0.25
+printf "%b\n" "${C_GREEN}[daemon] loading modules...${RESET}"
+sleep 0.25
+printf "%b\n\n" "${C_GREEN}[daemon] rendering...${RESET}"
+sleep 0.25
+
+# GLITCH 
+for ((i=0; i<5; i++)); do
+  printf "\033[H"
+  for ((j=0; j<MAX_LOGO_LINES; j++)); do
+    LEFT="${CLUB_LOGO[j]:-}"
+    RIGHT="${GAME_LOGO[j]:-}"
+
+    OFFSET=$((RANDOM % 3))
+    COLOR=$((RANDOM % 3))
+
+    case $COLOR in
+      0) C=$C_RED ;;
+      1) C=$C_GREEN ;;
+      2) C=$C_CYAN ;;
+    esac
+
+    printf "%*s ${C}%-*s${RESET}  ${C}%-*s${RESET}\n" \
+      "$OFFSET" "" \
+      "$LEFT_WIDTH" "$LEFT" \
+      "$RIGHT_WIDTH" "$RIGHT"
+  done
+  sleep 0.2
+done
+
+clear
+sleep 0.2
+
+for ((i=0; i<MAX_LOGO_LINES; i++)); do
+  LEFT="${CLUB_LOGO[i]:-}"
+  RIGHT="${GAME_LOGO[i]:-}"
+
+  printf " ${C_YELLOW}%-*s${RESET}  ${C_CYAN}%-*s${RESET}\n" \
+    "$LEFT_WIDTH" "$LEFT" \
+    "$RIGHT_WIDTH" "$RIGHT"
+
+  sleep 0.15
+done
+
+sleep 0.3
+echo
+printf "%b\n" "${C_GRAY}------------------------------------------------------------${RESET}"
+echo
+
+sleep 0.2
+# ---------------- INFO ----------------
+printf "%b\n" "${BOLD}${C_WHITE}          Welcome to The Daemon${RESET}"
+echo
+
+printf "%b\n" "${C_CYAN}  Player${RESET} : ${USER}"
+printf "%b\n" "${C_CYAN}  Event${RESET}  : ${C_MAGENTA}The Daemon${RESET}"
+printf "%b\n" "${C_CYAN}  Host${RESET}   : ${C_YELLOW}APPLICATION CLUB${RESET}"
+echo
+
+printf "%b\n" "${C_CYAN}  Objective${RESET} : Locate the hidden key in each level and execute:"
+echo
+
+printf "%b\n" "${C_CYAN}  Rules${RESET}:"
+printf "%b\n" "  ${C_WHITE}  • You are free to explore the entire system, but the key will always be hidden within your home directory (~/<user>).${RESET}"
+printf "%b\n" "  ${C_WHITE}  • Explore files in the current directory${RESET}"
+printf "%b\n" "  ${C_WHITE}  • No brute-force or automation${RESET}"
+printf "%b\n" "  ${C_WHITE}  • Do not modify system files${RESET}"
+printf "%b\n" "  ${C_WHITE}  • Play fair & ENJOY THE LEARNING${RESET}"
+echo
+
+printf "%b\n" "${C_CYAN}  Available Commands:${RESET}"
+
+printf "%b\n" "   ${C_GREEN}  unlock${RESET}       -> submit your key"
+printf "%b\n" "   ${C_GREEN}  giveup${RESET}       -> reveal current level final hint (0 points)"
+printf "%b\n" "   ${C_GREEN}  reload${RESET}       -> reload current level"
+printf "\n"
+echo
+echo "----------------------------------------------------"
+
+# ---------------- PRESS KEY ----------------
+echo
+printf "%b" "${C_YELLOW}  Press any key to continue...${RESET}"
+read -n 1 -s
+
+# ---------------- CLEAR + PROLOGUE ----------------
+clear
+
+printf "%b\n" "${C_MAGENTA}${BOLD}  Prologue:${RESET}"
+echo
+
+sleep 0.5
+
+echo "${C_WHITE} The small fire barely pushed back the heavy darkness of the castle courtyard...${RESET}"
+
+echo "${C_WHITE} I sat on the cold stone, staring into the flames ${RESET}"
+echo "${C_WHITE} not for warmth... but as a reminder.${RESET}"
+
+echo
+echo "${C_WHITE} Every step of my journey... every wound... every sacrifice...${RESET}"
+echo "${C_WHITE} had led me here.${RESET}"
+
+echo
+
+echo "${C_WHITE} There was no room left for doubt.${RESET}"
+echo "${C_WHITE} No space for fear.${RESET}"
+echo "${C_WHITE} I had come too far to feel anything but resolve...${RESET}"
+
+echo
+
+echo "${C_WHITE} Finally...${RESET}"
+echo "${C_WHITE} I whispered into the empty night...${RESET}"
+
+echo
+
+echo "${C_RED} I am inside the castle.${RESET}" 
+sleep 0.05
+echo "${C_YELLOW} Now I have only one motive.${RESET}" 
+sleep 0.05
+echo "${C_RED} I must kill the King.${RESET}" 
+sleep 0.05
+
+
+echo
+echo
+echo "----------------------------------------------------"
+echo
+printf "%b" "${C_YELLOW} Press any key to continue...${RESET}"
+read -n 1 -s
+# ---------------- LOAD LEVEL ----------------
+
+/opt/game/bin/player/load_level "$USER"
+
+# ---------------- SESSION TIMEOUT ----------------
+if [ -z "$TMOUT" ]; then
+    TMOUT=900
+    readonly TMOUT
+    export TMOUT
+fi

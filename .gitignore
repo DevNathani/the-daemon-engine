@@ -20,3 +20,7 @@ known_hosts
 backups
 
 self_notes
+
+db-scripts
+
+db.sh
