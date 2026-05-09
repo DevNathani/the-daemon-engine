@@ -206,16 +206,16 @@ are executed through controlled binaries.
 
 ---
 
-# 🚀 Future Enhancements
+#  Future Enhancements
 
 Planned improvements include:
-- dynamic level plugins
-- web dashboard
-- achievement system
-- multiplayer/co-op events
+- Dynamic Level Plugins
+- Advanced Players Session Management
+- Web Dashboard
+- Advanced Analytics
+- Multiplayer/Co-op events
 - modular challenge packs
-- advanced analytics
-
+- Better User Isolation
 ---
 
 # License
@@ -230,7 +230,7 @@ Event-specific levels, challenge content, and production assets remain private.
 
 Special thanks to the contributors who helped shape the gameplay experience through level design, story concepts, testing, and event coordination.
 
-- ## 👥 Contributors
+- ## Contributors
 
     - [Shubham Gupta](https://github.com/kanha321) — Level design and gameplay ideas
     - [Sanyam Goel](https://github.com/hexwhiz) — Story concepts and level design
@@ -238,7 +238,7 @@ Special thanks to the contributors who helped shape the gameplay experience thro
     - [Dev Nathani](https://github.com/DevNathani/DevNathani) - Core engine development, infrastructure, and system design
 
 
-- ## 🏫 Club Support
+- ## Club Support
 
     Special thanks to the **APPLICATION CLUB MNNIT** for:
     - organizing the event
